@@ -35,6 +35,18 @@ print(net)
 
 def load_data_fashion_mnist(batch_size, resize=None, root=os.path.join(
         '~', '.mxnet', 'datasets', 'fashion-mnist')):
+
+    # fashion_mnist数据集
+    # train, test 60000, 10000
+    # features, shape, dtype = 28 * 28 * 1, numpy.uint8 像素是 0 ～255的无符号8位整数
+    # label, dtype = numpy.int32 类型位numpy.int32 32位整数
+
+    # gdata.vision.transforms.ToTensor() 将uint8转 float32,并除以255，并且将通道数移到最前
+    # mnist_train.transform_first() 数据集的transform_first()函数将totensor()变换应用到每一个样本上
+    # 变换有多个，使用gdata.vision.transforms.Compose连接
+    # gdata.DataLoader 利用batch_size读取一个batch_size大小的小批量数据。
+
+
     root = os.path.expanduser(root)  # 展开用户路径'~'
     transformer = []
     if resize:
